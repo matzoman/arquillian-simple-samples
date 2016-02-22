@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>my-test-project</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<version.arquillian>1.1.11.Final</version.arquillian>
+		<version.arquillian.container>1.0.0.Beta2</version.arquillian.container>
+		<version.shrinkwrap.resolver>2.2.2</version.shrinkwrap.resolver>
+		<version.shrinkwrap.descriptors>2.0.0-alpha-8</version.shrinkwrap.descriptors>
+		<version.testng>6.9.8</version.testng>
+		<version.surefire>2.11</version.surefire>
+		<version.junit>4.11</version.junit>
+		<java.home>C:\Program Files\Java\jdk1.8.0_31</java.home>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>MyRepo</id>
+			<url>file://${basedir}/lib</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>MyRepo</id>
+			<url>file://${basedir}/lib</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- jUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- arquillian jUnit -->
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<version>${version.arquillian}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- overriding the version of arquillian stuff -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-spi</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-test-spi</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-cdi</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-ejb</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-resource</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-initialcontext</artifactId>
+			<version>${version.arquillian}</version>
+		</dependency>
+		<!-- wlp container -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-wlp-managed-8.5</artifactId>
+			<version>${version.arquillian.container}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.java</groupId>
+					<artifactId>tools</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Hello World Servlet -->
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.2.4.RELEASE</version>
+		</dependency>
+		<!-- adding tool.jar -->
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.6.0</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/lib/tools.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<!-- shrinkwrap resolver -->
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-depchain</artifactId>
+			<version>${version.shrinkwrap.resolver}</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		<!-- shrinkwrap descriptors -->
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-depchain</artifactId>
+			<version>${version.shrinkwrap.descriptors}</version>
+			<type>pom</type>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.11</version>
+				<configuration>
+					<groups>com.mycompany.SlowTests</groups>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

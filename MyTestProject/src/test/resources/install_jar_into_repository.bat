@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=lib -DgroupId=com.example -DartifactId=MyAdditionEJB -Dversion=0.1 -Dfile=install\\MyAdditionEJB.jar -Dpackaging=jar -DgeneratePom=true -DcreateChecksum=true

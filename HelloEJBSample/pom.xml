@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>hello-ebj-sample</artifactId>
+	<version>1.0</version>
+
+	<repositories>
+		<repository>
+			<id>zks-maven-lib</id>
+			<url>file://${basedir}/../maven-lib</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<directory>${project.basedir}/target</directory>
+		<outputDirectory>${project.build.directory}/classes</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>${project.build.directory}/test-classes
+		</testOutputDirectory>
+		<sourceDirectory>${project.basedir}/ejbModule</sourceDirectory>
+		<scriptSourceDirectory>scripts</scriptSourceDirectory>
+		<testSourceDirectory>${project.basedir}/test/java
+		</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/test/resources</directory>
+			</testResource>
+		</testResources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.ws</groupId>
+			<artifactId>javaee-ejb-3.2</artifactId>
+			<version>1.0.11</version>
+		</dependency>
+	</dependencies>
+
+</project>
